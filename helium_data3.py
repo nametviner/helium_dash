@@ -141,12 +141,13 @@ city_name = st.sidebar.selectbox('Choose a city' ,options)
 filt = st.sidebar.selectbox('Filter Online/Offline', ['All', 'Online','Offline'])
 
 if page == 'Hotspot Data':
-    df = stats(city_name).sort_values(by= 'total mined', ascending = False).set_index('name')
+    hot_data = stats(city_name).sort_values(by= 'total mined', ascending = False).set_index('name')
     if filt == 'Online':
-        df = df[df['status']== 'online']
+        hot_data = hot_data[hot_data['status']== 'online']
     elif filt == 'Offline':
-        df = df[df['status']== 'offline']
-    st.table(df.style.applymap(color_status, subset=['status']).set_precision(2))
+        hot_data = hot_data[hot_data['status']== 'offline']
+    st.table(hot_data.style.applymap(color_status, subset=['status']).set_precision(2))
+   
     
 if page == 'Earnings Data':
     if city_name == 'ALL':
