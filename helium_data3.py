@@ -64,7 +64,6 @@ def get_cities(city):
         d['name'] = 'AVERAGE'
         d['location'] = " "
         d['status'] = ""
-        d['total earnings'] = " "
         df = df.append(d, ignore_index = True)
 
         d_total['name'] = 'TOTAL'
