@@ -151,11 +151,12 @@ if page == 'Hotspot Data':
 if page == 'Earnings Data':
     if city_name == 'ALL':
         cities = compiled().set_index('city')
+        cities = cities.sort_values(by= 'total mined', ascending = False)
         st.table(cities.style.apply(lambda x: ['background: lightsteelblue' if x.name == 'TOTAL' else '' for i in x], axis=1).set_precision(2))
 
 
     else:
-        df = pd.DataFrame(get_cities(city_name))
+        df = pd.DataFrame(get_cities(city_name)).sort_values(by= 'total earnings', ascending = False)
         d = dict(df.mean(axis =0, numeric_only = True))
         d['name'] = 'AVERAGE'
         d['location'] = " "
